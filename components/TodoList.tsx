@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import React from 'react';
 import TodoCard from './TodoCard';
 import Todo from '../types/todo';
@@ -5,6 +6,12 @@ import Todo from '../types/todo';
 type Props = {
   todos: Array<Todo>;
 };
+
+const [completed, setCompleted] = useState(false);
+
+  const handleComplete = () => {
+    setCompleted(!completed);
+  };
 
 function TodoList({ todos }: Props) {
   return (

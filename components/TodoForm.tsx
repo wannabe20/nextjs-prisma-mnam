@@ -38,7 +38,7 @@ function TodoForm({}: Props) {
           value={body}
           onChange={(e) => setBody(e.target.value)}
           className='ml-2 w-full outline-none'
-          placeholder='Buy Tomatoes'
+          placeholder='Uspokoj přítelkyni...'
         />
         <input
           type='submit'
