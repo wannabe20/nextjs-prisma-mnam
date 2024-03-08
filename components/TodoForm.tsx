@@ -1,27 +1,28 @@
+"use client"
 import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { redirect } from 'next/dist/server/api-utils';
 
 type Props = {};
 
 function TodoForm({}: Props) {
   const [body, setBody] = useState('');
   const [isLoading, setisLoading] = useState(false);
+  const router = useRouter();
 
   const handleAddTodo = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setisLoading(true);
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
-      const { data } = await axios.post('/api/todos', { body }, config);
-
-      console.log(data);
+      console.log()
+      const res = await fetch('http://localhost:3000/api/todos',{
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
 
       setisLoading(false);
     } catch (error) {
@@ -42,7 +43,7 @@ function TodoForm({}: Props) {
         />
         <input
           type='submit'
-          className='p-2 ml-auto bg-blue-500 text-white hover:bg-blue-600 cursor-pointer'
+          className='p-2 ml-auto bg-blue-500 text-white hover:bg-blue-700 cursor-pointer'
           value='Add Todo'
         />
       </form>

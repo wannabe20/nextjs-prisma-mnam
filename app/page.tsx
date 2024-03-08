@@ -3,10 +3,11 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
-import { PrismaClient } from '@prisma/client';
+import TodoCard from '../components/TodoCard';
 
-const Home = ({ todos }: any) => {
-  const parsedTodos = JSON.parse(todos);
+export default async function Home(){
+  const todo = await fetch("http://localhost:3000/api/todos")
+  const parsedTodos = await todo.json()
   return (
     <div className='max-w-[1000px] m-auto bg-gray-50'>
       <Head>
@@ -17,21 +18,8 @@ const Home = ({ todos }: any) => {
       <Navbar />
       <main className='border-b'>
         <TodoForm />
-        <TodoList todos={parsedTodos} />
+        <TodoList data={parsedTodos}/>
       </main>
     </div>
   );
 };
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const prisma = new PrismaClient();
-
-  const data = await prisma.todo.findMany();
-
-  if (!data) {
-    return { props: { message: 'Nothing to show' } };
-  }
-  return { props: { todos: JSON.stringify(data) } };
-};
-
-export default Home;
