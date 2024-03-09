@@ -32,7 +32,7 @@ function TodoCard({ body, completed, id}: Props) {
   return (
     <form onSubmit={(e) => e.preventDefault}> {/* Prevent default form submission */}
       <div className='card select-none cursor-pointer'>
-        <div className='card__wrapper flex justify-between p-4 border bg-white'>
+        <div className='card__wrapper flex justify-between p-4 border'>
           <p className='text-lg font-semibold'>{body}</p>
           <button className='text-blue-500 hover:text-blue-700' onClick={() => handleDelete(id)}>
             {completed ? 'Completed' : 'Complete'}
