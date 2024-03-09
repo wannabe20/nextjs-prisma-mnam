@@ -1,33 +1,21 @@
 "use client"
-import React, { useState, useEffect, FormEvent } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { redirect } from 'next/dist/server/api-utils';
+import React, { useState, FormEvent } from 'react';
 
-type Props = {};
-
-function TodoForm({}: Props) {
+function TodoForm() {
   const [body, setBody] = useState('');
   const [isLoading, setisLoading] = useState(false);
-  const router = useRouter();
 
   const handleAddTodo = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     setisLoading(true);
-    try {
-      console.log()
-      const res = await fetch('http://localhost:3000/api/todos',{
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-
-      setisLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await fetch('http://localhost:3000/api/todos',{
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    setisLoading(false);
   };
 
   return (

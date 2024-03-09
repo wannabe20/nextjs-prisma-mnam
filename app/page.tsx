@@ -1,12 +1,10 @@
-import type { NextPage, GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
-import TodoCard from '../components/TodoCard';
 
 export default async function Home(){
-  const todo = await fetch("http://localhost:3000/api/todos")
+  const todo = await fetch("http://localhost:3000/api/todos", { cache: 'no-store' })
   const parsedTodos = await todo.json()
   return (
     <div className='max-w-[1000px] m-auto bg-gray-50'>
