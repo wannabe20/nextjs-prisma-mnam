@@ -15,9 +15,7 @@ function TodoCard({ body, completed, id, onDelete }: Props) {
       const res = await fetch(`http://localhost:3000/api/todos/${id}`, { 
         // Use template literal and include id
         method: 'DELETE', // DELETE for deletion
-        headers: {
-          'content-type': 'application/json',
-        },
+        
         
       });
       onDelete(id); // Call the onDelete prop function to manage deletion logic
