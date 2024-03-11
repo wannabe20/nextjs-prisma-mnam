@@ -12,7 +12,7 @@ function TodoCard({ body, completed, id}: Props) {
   const handleDelete = async (id: number) => {
     console.log("test")
     try {
-      const res = await fetch(`http://localhost:3000/api/todos/${id}`, { 
+      const res = await fetch(`process.env.https://nextjs-prisma-mnam-iota.vercel.app/${id}`, { 
         method: 'DELETE',
         headers: {
           "Content-Type": "application/json",

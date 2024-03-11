@@ -7,7 +7,7 @@ function TodoForm() {
 
   const handleAddTodo = async (e: FormEvent<HTMLFormElement>) => {
     setisLoading(true);
-    const res = await fetch('http://localhost:3000/api/todos',{
+    const res = await fetch('process.env.https://nextjs-prisma-mnam-iota.vercel.app/${id}',{
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
