@@ -1,19 +1,16 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import ITodo from '../../../types/todo';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
 const prisma = new PrismaClient();
 
 export async function GET(req: Request, res: Response){
-  try {
-    const todos = await prisma.todo.findMany();
-    return NextResponse.json({todos}, {status: 200});
-  } catch (error) {
-    console.error(error);
+  const todos = await prisma.todo.findMany();
+
+  if(!todos){
+    return NextResponse.json("failed")
   }
-  return NextResponse.json("failed")
+  return NextResponse.json(todos, {status: 200});
 }
 
 export async function POST(req: Request, res: Response){
@@ -28,6 +25,6 @@ export async function POST(req: Request, res: Response){
     return NextResponse.json("failed")
   }
 
-  await revalidatePath("/")
-  return NextResponse.json({todos}, {status: 200});
+  revalidatePath("/")
+  return NextResponse.json(todos, {status: 200});
 }
