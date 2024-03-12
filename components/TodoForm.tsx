@@ -19,8 +19,8 @@ function TodoForm() {
   };
 
   return (
-    <section className='p-6 border-l border-r'>
-      <form onSubmit={handleAddTodo} className='flex flex-row border'>
+    <section className='p-6 border-l border-r min-w-96'>
+      <form onSubmit={handleAddTodo} className='flex flex-row border w-96'>
         <input
           type='text'
           name='body'
@@ -31,7 +31,7 @@ function TodoForm() {
         />
         <input
           type='submit'
-          className='p-2 ml-auto bg-blue-500 hover:bg-blue-700 cursor-pointer'
+          className='p-2 bg-blue-500 hover:bg-blue-700 cursor-pointer ml-auto'
           value='Add Todo'
         />
       </form>

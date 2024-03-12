@@ -30,16 +30,16 @@ function TodoCard({ body, completed, id}: Props) {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault}> {/* Prevent default form submission */}
-      <div className='card select-none cursor-pointer'>
-        <div className='card__wrapper flex justify-between p-4 border'>
-          <p className='text-lg font-semibold'>{body}</p>
-          <button className='text-blue-500 hover:text-blue-700' onClick={() => handleDelete(id)}>
-            {completed ? 'Completed' : 'Complete'}
-          </button>
-        </div>
+    <form onSubmit={(e) => e.preventDefault}>
+    <div className='card select-none cursor-pointer flex flex-col justify-center'> 
+      <div className='card__wrapper flex justify-between p-4 border w-64'>
+        <p className='text-lg font-semibold'>{body}</p>
+        <button className='text-blue-500 hover:text-blue-700' onClick={() => handleDelete(id)}>
+          {completed ? 'Completed' : 'Complete'}
+        </button>
       </div>
-    </form>
+    </div>
+  </form>
   );
 }
 
