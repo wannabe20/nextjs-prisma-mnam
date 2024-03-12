@@ -7,8 +7,8 @@ function TodoForm() {
 
   const handleAddTodo = async (e: FormEvent<HTMLFormElement>) => {
     setisLoading(true);
-    const res = await fetch('process.env.https://nextjs-prisma-mnam-iota.vercel.app/${id}',{
-      method: 'POST',
+    const res = await fetch(`process.env.https://nextjs-prisma-mnam-iota.vercel.app/api/todos/}`,{
+      method: 'GET',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
