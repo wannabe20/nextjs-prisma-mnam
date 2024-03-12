@@ -12,7 +12,6 @@ export default function TodoForm() {
     setIsLoading(true);
     try {
       const todo = await addTodo(body.toString());
-      console.log(todo);
       setBody('');
     } catch (error) {
       console.error(error);

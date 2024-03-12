@@ -1,4 +1,3 @@
-"use client"
 import React from 'react';
 import { delTodo } from '../lib/db';
 
@@ -8,9 +7,10 @@ type Props = {
   id: number;
 };
 
-export default function TodoCard({ body, completed, id}: Props) {
+function TodoCard({ body, completed, id}: Props) {
 
-  const handleDelete = async (id: number) => {
+  async function handleDelete(){
+    "use server"
     try {
       const todo = await delTodo(id);
     } catch (error) {
@@ -19,11 +19,11 @@ export default function TodoCard({ body, completed, id}: Props) {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault}>
+    <form action={handleDelete}>
       <div className='card select-none cursor-pointer'>
         <div className='card__wrapper flex justify-between p-4 border'>
           <p className='text-lg font-semibold'>{body}</p>
-          <button className='text-blue-500 hover:text-blue-700' onClick={() => handleDelete(id)}>
+          <button className='text-blue-500 hover:text-blue-700'>
             {completed ? 'Completed' : 'Complete'}
           </button>
         </div>
@@ -32,3 +32,4 @@ export default function TodoCard({ body, completed, id}: Props) {
   );
 }
 
+export default TodoCard;
