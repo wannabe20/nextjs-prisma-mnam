@@ -8,7 +8,7 @@ type Props = {
   id: number;
 };
 
-function TodoCard({ body, completed, id}: Props) {
+export default function TodoCard({ body, completed, id}: Props) {
 
   const handleDelete = async (id: number) => {
     try {
@@ -32,4 +32,3 @@ function TodoCard({ body, completed, id}: Props) {
   );
 }
 
-export default TodoCard;
